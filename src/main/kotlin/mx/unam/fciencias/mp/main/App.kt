@@ -2,7 +2,7 @@ package mx.unam.fciencias.mp.main
 
 import mx.unam.fciencias.mp.sandwiches.Ingredient
 import mx.unam.fciencias.mp.sandwiches.BaseSandwich
-import mx.unam.fciencias.mp.sandwiches.BreadType
+import mx.unam.fciencias.mp.sandwiches.Bread
 import mx.unam.fciencias.mp.sandwiches.SandwichDecorator
 
 /**
@@ -15,11 +15,11 @@ fun main(args: Array<String>) {
                             SandwichDecorator(Ingredient.LETTUCE,
                                     SandwichDecorator(Ingredient.TOMATO,
                                             SandwichDecorator(Ingredient.WHITE_CHEESE,
-                                                    BaseSandwich(BreadType.PLAIN_BOLILLO)
+                                                    BaseSandwich(Bread.PLAIN_BOLILLO)
                                             )))))
-    miltorta.getIngredients().forEach {
+    miltorta.ingredients.forEach {
         println("Ingrediente: $it")
     }
-    println("Costo total: ${miltorta.getCost() / 100.0}")
-    println("Precio total: ${miltorta.getPrice()}")
+    println("Costo total: ${miltorta.cost / 100.0}")
+    println("Precio total: ${miltorta.price / 100.0}")
 }

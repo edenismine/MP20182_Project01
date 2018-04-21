@@ -1,16 +1,18 @@
 package mx.unam.fciencias.mp.sandwiches
 
+import mx.unam.fciencias.mp.util.*
+
 enum class Ingredient(val ingredient: String, val cost: Int) {
-    WHITE_CHEESE("Queso blanco", 20),
-    SPANISH_CHEESE("Queso manchego", 30),
-    TOMATO("Jitomate", 10),
-    LETTUCE("Lechuga", 10),
-    HAM("Jamón", 250),
-    CHICKEN("Pollo", 250),
-    HEAD_CHEESE("Queso de puerco", 200),
-    BEEF_MILANESA("Milanesa de res", 450),
-    MAYONNAISE("Mayonesa", 10),
-    MUSTARD("Mostaza", 10),
-    KETCHUP("Catsup", 10)
+    WHITE_CHEESE(WHITE_CHEESE_TAG, WHITE_CHEESE_COST),
+    SPANISH_CHEESE(SPANISH_CHEESE_TAG, SPANISH_CHEESE_COST),
+    TOMATO(TOMATO_TAG, TOMATO_COST),
+    LETTUCE(LETTUCE_TAG, LETTUCE_COST),
+    HAM(HAM_TAG, HAM_COST),
+    CHICKEN(CHICKEN_TAG, CHICKEN_COST),
+    HEAD_CHEESE(HEAD_CHEESE_TAG, HEAD_CHEESE_COST),
+    BEEF_MILANESA(BEEF_MILANESA_TAG, BEEF_MILANESA_COST),
+    MAYONNAISE(MAYONNAISE_TAG, MAYONNAISE_COST),
+    MUSTARD(MUSTARD_TAG, MUSTARD_COST),
+    KETCHUP(KETCHUP_TAG, KETCHUP_COST)
 }
 

@@ -1,11 +1,10 @@
 package mx.unam.fciencias.mp.sandwiches
 
-class BaseSandwich(private val type: BreadType) : Torta() {
-    override fun getIngredients(): MutableList<String> {
-        return arrayListOf(type.type)
-    }
-
-    override fun getCost(): Int {
-        return type.cost
-    }
+class BaseSandwich(private val bread: Bread) : Sandwich {
+    override val ingredients: List<String>
+        get() = listOf()
+    override val base: String
+        get() = bread.type
+    override val cost: Int
+        get() = bread.cost
 }
