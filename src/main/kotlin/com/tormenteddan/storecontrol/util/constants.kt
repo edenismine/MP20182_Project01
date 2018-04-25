@@ -1,4 +1,4 @@
-package mx.unam.fciencias.mp.util
+package com.tormenteddan.storecontrol.util
 
 /* PROFIT BRACKET */
 const val BRACKET = 100 / 20.0

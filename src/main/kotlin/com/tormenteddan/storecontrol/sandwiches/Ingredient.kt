@@ -1,6 +1,6 @@
-package mx.unam.fciencias.mp.sandwiches
+package com.tormenteddan.storecontrol.sandwiches
 
-import mx.unam.fciencias.mp.util.*
+import com.tormenteddan.storecontrol.util.*
 
 enum class Ingredient(val ingredient: String, val cost: Int) {
     WHITE_CHEESE(WHITE_CHEESE_TAG, WHITE_CHEESE_COST),
