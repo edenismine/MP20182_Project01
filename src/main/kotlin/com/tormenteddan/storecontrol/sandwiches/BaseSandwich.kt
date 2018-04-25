@@ -5,6 +5,8 @@ import com.tormenteddan.storecontrol.sandwiches.ingredients.Ingredient
 
 /**
  * Only sandwich implementor with a constructor.
+ *
+ * @property bread The bread used for this sandwich.
  */
 class BaseSandwich(private val bread: Bread) : Sandwich {
 

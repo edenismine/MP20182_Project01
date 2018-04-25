@@ -7,6 +7,8 @@ package com.tormenteddan.storecontrol.sandwiches.ingredients
  * @property cost The cost (in cents) of this type of bread.
  */
 enum class Bread(val type: String, val cost: Int) {
+    /** Plain bolillo. */
     PLAIN_BOLILLO(PLAIN_BOLILLO_TAG, PLAIN_BOLILLO_COST),
+    /** Wholegrain bolillo. */
     WHOLEGRAIN_BOLILLO(WHOLEGRAIN_BOLILLO_TAG, WHOLEGRAIN_BOLILLO_COST)
 }

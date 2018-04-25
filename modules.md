@@ -1,3 +1,4 @@
 # Module main
 
-Main module documentation.
+A sandwich stores' manager with a sandwich builder tool and 
+location-specific inventory control.

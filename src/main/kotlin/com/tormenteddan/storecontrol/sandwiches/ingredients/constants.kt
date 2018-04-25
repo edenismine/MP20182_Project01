@@ -29,34 +29,34 @@ const val KETCHUP_TAG = "Catsup"
 
 /** Tag corresponding to plain bolillo*/
 const val PLAIN_BOLILLO_TAG = "Bolillo blanco"
-/** Tag corresponding to whole grain bolillo*/
+/** Tag corresponding to wholegrain bolillo*/
 const val WHOLEGRAIN_BOLILLO_TAG = "Bolillo integral"
 
 /* INGREDIENT COSTS */
-/** Cost (in cents) of white cheese*/
+/** Cost (in cents) of a portion of white cheese*/
 const val WHITE_CHEESE_COST = 100
-/** Cost (in cents) of spanish cheese*/
+/** Cost (in cents) of a portion of spanish cheese*/
 const val SPANISH_CHEESE_COST = 110
-/** Cost (in cents) of tomato*/
+/** Cost (in cents) of a portion of tomato*/
 const val TOMATO_COST = 40
-/** Cost (in cents) of lettuce*/
+/** Cost (in cents) of a portion of lettuce*/
 const val LETTUCE_COST = 30
-/** Cost (in cents) of ham*/
+/** Cost (in cents) of a portion of ham*/
 const val HAM_COST = 500
-/** Cost (in cents) of chicken*/
+/** Cost (in cents) of a portion of chicken*/
 const val CHICKEN_COST = 550
-/** Cost (in cents) of head cheese*/
+/** Cost (in cents) of a portion of head cheese*/
 const val HEAD_CHEESE_COST = 450
-/** Cost (in cents) of beef milanesa*/
+/** Cost (in cents) of a portion of beef milanesa*/
 const val BEEF_MILANESA_COST = 800
-/** Cost (in cents) of mayonnaise*/
+/** Cost (in cents) of a portion of mayonnaise*/
 const val MAYONNAISE_COST = 30
-/** Cost (in cents) of mustard*/
+/** Cost (in cents) of a portion of mustard*/
 const val MUSTARD_COST = 30
-/** Cost (in cents) of ketchup*/
+/** Cost (in cents) of a portion of ketchup*/
 const val KETCHUP_COST = 30
 
-/** Cost (in cents) of plain bolillo*/
+/** Cost (in cents) of a portion of plain bolillo*/
 const val PLAIN_BOLILLO_COST = 100
-/** Cost (in cents) of whole grain bolillo*/
+/** Cost (in cents) of a portion of wholegrain bolillo*/
 const val WHOLEGRAIN_BOLILLO_COST = 150
