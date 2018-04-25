@@ -1,6 +1,9 @@
 package com.tormenteddan.storecontrol.main
 
-import com.tormenteddan.storecontrol.sandwiches.*
+import com.tormenteddan.storecontrol.sandwiches.BaseSandwich
+import com.tormenteddan.storecontrol.sandwiches.Sandwich
+import com.tormenteddan.storecontrol.sandwiches.ingredients.Bread
+import com.tormenteddan.storecontrol.sandwiches.ingredients.Ingredient
 
 /**
  * This is the demo's main function
@@ -8,38 +11,38 @@ import com.tormenteddan.storecontrol.sandwiches.*
 fun main(args: Array<String>) {
     var miltorta: Sandwich =
             BaseSandwich(Bread.PLAIN_BOLILLO) +
-            Ingredient.BEEF_MILANESA +
-            Ingredient.KETCHUP +
-            Ingredient.MAYONNAISE +
-            Ingredient.TOMATO +
-            Ingredient.SPANISH_CHEESE
+                    Ingredient.BEEF_MILANESA +
+                    Ingredient.KETCHUP +
+                    Ingredient.MAYONNAISE +
+                    Ingredient.TOMATO +
+                    Ingredient.SPANISH_CHEESE
 
-    println("Base: ${miltorta.base}")
-    miltorta.ingredients.forEach {println("Ingrediente: $it")}
+    println("Base: ${miltorta.base.type}")
+    miltorta.ingredients.forEach { println("Ingrediente: ${it.ingredient}") }
     println("Costo total: ${miltorta.cost / 100.0}")
     println("Precio total: ${miltorta.price / 100.0}")
 
     println("\nPlease remove beef milanesa\n")
 
     miltorta -= Ingredient.BEEF_MILANESA
-    println("Base: ${miltorta.base}")
-    miltorta.ingredients.forEach {println("Ingrediente: $it")}
+    println("Base: ${miltorta.base.type}")
+    miltorta.ingredients.forEach { println("Ingrediente: ${it.ingredient}") }
     println("Costo total: ${miltorta.cost / 100.0}")
     println("Precio total: ${miltorta.price / 100.0}")
 
     println("\nPlease add chicken\n")
 
     miltorta += Ingredient.CHICKEN
-    println("Base: ${miltorta.base}")
-    miltorta.ingredients.forEach {println("Ingrediente: $it")}
+    println("Base: ${miltorta.base.type}")
+    miltorta.ingredients.forEach { println("Ingrediente: ${it.ingredient}") }
     println("Costo total: ${miltorta.cost / 100.0}")
     println("Precio total: ${miltorta.price / 100.0}")
 
     println("\nPlease make it whole grain\n")
 
     miltorta = miltorta(Bread.WHOLEGRAIN_BOLILLO)
-    println("Base: ${miltorta.base}")
-    miltorta.ingredients.forEach {println("Ingrediente: $it")}
+    println("Base: ${miltorta.base.type}")
+    miltorta.ingredients.forEach { println("Ingrediente: ${it.ingredient}") }
     println("Costo total: ${miltorta.cost / 100.0}")
     println("Precio total: ${miltorta.price / 100.0}")
 }

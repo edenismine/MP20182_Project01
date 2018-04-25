@@ -1,7 +1,11 @@
-package com.tormenteddan.storecontrol.sandwiches
+package com.tormenteddan.storecontrol.sandwiches.ingredients
 
-import com.tormenteddan.storecontrol.util.*
-
+/**
+ * [ingredient] with [cost].
+ *
+ * @property ingredient The ingredient.
+ * @property cost The ingredient's cost (in cents).
+ */
 enum class Ingredient(val ingredient: String, val cost: Int) {
     WHITE_CHEESE(WHITE_CHEESE_TAG, WHITE_CHEESE_COST),
     SPANISH_CHEESE(SPANISH_CHEESE_TAG, SPANISH_CHEESE_COST),

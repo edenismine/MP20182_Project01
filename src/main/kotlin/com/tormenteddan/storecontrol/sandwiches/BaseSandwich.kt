@@ -1,11 +1,17 @@
 package com.tormenteddan.storecontrol.sandwiches
 
+import com.tormenteddan.storecontrol.sandwiches.ingredients.Bread
+import com.tormenteddan.storecontrol.sandwiches.ingredients.Ingredient
+
+/**
+ * Only sandwich implementor with a constructor.
+ */
 class BaseSandwich(private val bread: Bread) : Sandwich {
 
-    override val ingredients: List<String>
+    override val ingredients: List<Ingredient>
         get() = listOf()
-    override val base: String
-        get() = bread.type
+    override val base: Bread
+        get() = bread
     override val cost: Int
         get() = bread.cost
 
