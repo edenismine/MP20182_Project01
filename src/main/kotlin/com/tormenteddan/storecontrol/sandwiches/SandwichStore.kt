@@ -28,15 +28,18 @@ import java.util.Observable
  * @property address The store's address.
  * @property shoppingList The store's current shopping list.
  * @property balance The store's current balance.
+ * @property menu The store's menu.
  *
  * @see Inventory
  * @see Observable
  *
  * @author daniel.aragon@ciencias.unam.mx
  */
-abstract class SandwichStore
-(val name: String, val address: String,
- private val inventory: Inventory<SandwichIngredient>, balance: Int = 0
+class SandwichStore(val name: String,
+                    val address: String,
+                    private val inventory: Inventory<SandwichIngredient>,
+                    val menu : MutableCollection<Sandwich>,
+                    balance: Int = 0
 ) : Observable() {
 
     var balance = balance
@@ -122,16 +125,6 @@ abstract class SandwichStore
         }
         return prepared
     }
-
-    /**
-     * This function maps positive integers to default menu items (sandwiches).
-     * Implementations should document the mapping.
-     *
-     * @param index Menu index of the desired item.
-     *
-     * @return the sandwich that corresponds to the given index.
-     */
-    abstract fun menuItem(index: Int): Sandwich
 
     /**
      * Creates a string representation of the store:
