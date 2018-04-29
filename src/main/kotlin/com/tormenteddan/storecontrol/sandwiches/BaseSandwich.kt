@@ -2,16 +2,30 @@ package com.tormenteddan.storecontrol.sandwiches
 
 import com.tormenteddan.storecontrol.sandwiches.ingredients.Bread
 import com.tormenteddan.storecontrol.sandwiches.ingredients.Ingredient
+import com.tormenteddan.storecontrol.sandwiches.ingredients.SandwichIngredient
+import com.tormenteddan.storecontrol.sandwiches.ingredients.name
 
 /**
- * Only sandwich implementor with a constructor.
+ * A sandwich that has a certain kind of [bread] as a base, and a [custom]
+ * name.
  *
- * @property bread The bread used for this sandwich.
+ * Only [Sandwich] implementor with a constructor.
+ *
+ * @param bread The bread used for this sandwich.
+ * @param custom A custom name for the sandwich.
+ *
+ * @see Sandwich
+ * @see SandwichIngredient
+ * @see DecoratedSandwich
+ *
+ * @author daniel.aragon@ciencias.unam.mx
  */
-class BaseSandwich(private val bread: Bread) : Sandwich {
-
-    override val ingredients: List<Ingredient>
-        get() = listOf()
+class BaseSandwich
+(private val bread: Bread, private val custom: String? = null) : Sandwich {
+    override val name: String
+        get() = custom ?: bread.name()
+    override val ingredients: List<SandwichIngredient>
+        get() = listOf(bread)
     override val base: Bread
         get() = bread
     override val cost: Int
