@@ -3,7 +3,6 @@ package com.tormenteddan.storecontrol.sandwiches
 import com.tormenteddan.storecontrol.sandwiches.ingredients.Bread
 import com.tormenteddan.storecontrol.sandwiches.ingredients.Ingredient
 import com.tormenteddan.storecontrol.sandwiches.ingredients.SandwichIngredient
-import com.tormenteddan.storecontrol.sandwiches.ingredients.name
 
 /**
  * A sandwich that has a certain kind of [bread] as a base, and a [custom]
@@ -23,7 +22,7 @@ import com.tormenteddan.storecontrol.sandwiches.ingredients.name
 class BaseSandwich
 (private val bread: Bread, private val custom: String? = null) : Sandwich {
     override val name: String
-        get() = custom ?: bread.name()
+        get() = custom ?: bread.name
     override val ingredients: List<SandwichIngredient>
         get() = listOf(bread)
     override val base: Bread

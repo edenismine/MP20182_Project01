@@ -1,7 +1,7 @@
 package com.tormenteddan.storecontrol.util
 
 /**
- * An inventory item should have a unique [id], an identifying [description]
+ * An inventory article should have a unique [id], an identifying [description]
  * and an associated [cost].
  *
  * It should also have a pair of associated quantities:
@@ -24,12 +24,10 @@ package com.tormenteddan.storecontrol.util
  * @param _current unchecked initial quantity.
  * @param _required unchecked initial required quantity.
  *
- * @see Inventory
- * @see InventoryEntryAdapter
  *
  * @author daniel.aragon@ciencias.unam.mx
  */
-data class InventoryEntry(
+data class Article(
         val id: Int,
         val description: String,
         private var _cost: Int,
@@ -59,7 +57,7 @@ data class InventoryEntry(
      * Returns a string representation of the entry.
      */
     override fun toString(): String {
-        return "InventoryEntry(id=$id, description=$description, cost=$cost," +
+        return "Article(id=$id, description=$description, cost=$cost," +
                 "current=$current, required=$required)"
     }
 }

@@ -15,13 +15,15 @@ data class Ingredient
 (val description: String, val cost: Int) : SandwichIngredient()
 
 /**
- * Bread [type] with [cost].
+ * Bread [type] with [cost]. A sandwich will be named according to the type
+ * of bread that's used.
  *
  * @property type Type of bread, e.g. plain white bread.
  * @property cost The cost (in cents) of this description of bread.
+ * @property name The name of a sandwich that uses this bread.
  */
 data class Bread
-(val type: String, val cost: Int) : SandwichIngredient()
+(val type: String, val cost: Int, val name: String) : SandwichIngredient()
 
 /**
  * Extension function that exhaustively attempts to retrieve a description
@@ -102,6 +104,11 @@ const val PLAIN_BOLILLO_COST = 100
 /** Cost (in cents) of a portion of wholegrain bolillo*/
 const val WHOLEGRAIN_BOLILLO_COST = 150
 
+/** The name of a torta with plain bolillo*/
+const val PLAIN_BOLILLO_NAME = "Bolillo blanco"
+/** The name of a torta with wholegrain bolillo*/
+const val WHOLEGRAIN_BOLILLO_NAME = "Bolillo integral"
+
 /** White cheese. */
 val WHITE_CHEESE = Ingredient(WHITE_CHEESE_TAG, WHITE_CHEESE_COST)
 
@@ -126,16 +133,20 @@ val MUSTARD = Ingredient(MUSTARD_TAG, MUSTARD_COST)
 /** Ketchup. */
 val KETCHUP = Ingredient(KETCHUP_TAG, KETCHUP_COST)
 /** Plain bolillo. */
-val PLAIN_BOLILLO = Bread(PLAIN_BOLILLO_TAG, PLAIN_BOLILLO_COST)
+val PLAIN_BOLILLO = Bread(PLAIN_BOLILLO_TAG, PLAIN_BOLILLO_COST, PLAIN_BOLILLO_NAME)
 /** Wholegrain bolillo. */
-val WHOLEGRAIN_BOLILLO = Bread(WHOLEGRAIN_BOLILLO_TAG, WHOLEGRAIN_BOLILLO_COST)
+val WHOLEGRAIN_BOLILLO = Bread(WHOLEGRAIN_BOLILLO_TAG,
+        WHOLEGRAIN_BOLILLO_COST, WHOLEGRAIN_BOLILLO_NAME)
 
 /** All torta ingredients. */
-val tortaIngredients = listOf(WHITE_CHEESE, SPANISH_CHEESE, TOMATO, LETTUCE,
+val TORTA_INGREDIENTS = listOf(WHITE_CHEESE, SPANISH_CHEESE, TOMATO, LETTUCE,
         HAM, CHICKEN, HEAD_CHEESE, BEEF_MILANESA, MAYONNAISE, MUSTARD, KETCHUP)
 
 /** All torta bread types. */
-val tortaBread = listOf(PLAIN_BOLILLO, WHOLEGRAIN_BOLILLO)
+val TORTA_BREAD = listOf(PLAIN_BOLILLO, WHOLEGRAIN_BOLILLO)
+
+/** All torta components */
+val TORTA_COMPONENTS = TORTA_INGREDIENTS + TORTA_BREAD
 
 
 /**
