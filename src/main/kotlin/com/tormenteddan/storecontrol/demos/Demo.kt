@@ -8,18 +8,13 @@ import java.util.*
  * This function runs a demo depending on the [arguments][args] passed to
  * the program.
  *
- * - If "1" is passed it this function will execute the [first demo][demo1].
- * - If "2" is passed it this function will execute the [second demo][demo2].
- * - Any other option will just end the program.
+ * - If "1" is passed, this function will execute the [first demo][demo1].
+ * - If "2" is passed, this function will execute the [second demo][demo2].
+ * - Any other option is passed the program will just end.
  *
  * @param args console arguments.
  */
 fun main(args: Array<String>) {
-
-    MainStTorteria.addObserver(Supervisor)
-    TeslaAvTorteria.addObserver(Supervisor)
-    LimeDrvSandwicheria.addObserver(Supervisor)
-
     when {
         args.isEmpty() -> println("Empty arguments. Did not run any demo!")
         args.first().toIntOrNull() == 1 -> demo1()
@@ -51,8 +46,8 @@ fun demo1() {
     val random = Random()
     for (clerk in clerks) {
         val bound = clerk.store.menu.size
-        val s = clerk.makeSandwich(random.nextInt(bound))
-        if (s != null) clerk.sellSandwich(s)
+        val s = clerk.getSandwich(random.nextInt(bound))
+        if (s != null) clerk.sellSandwich(s.ingredients)
     }
     Supervisor.buyMissingItems()
 }
@@ -74,15 +69,8 @@ fun demo2() {
             MAYONNAISE
     )
 
-    val s1 = mainStClerk.makeSandwich(ingredients)
-    if (s1 != null)
-        mainStClerk.sellSandwich(s1)
+    mainStClerk.sellSandwich(ingredients)
+    limeDrvClerk.sellSandwich(ingredients)
 
-    val s2 = limeDrvClerk.makeSandwich(ingredients)
-    if (s2 != null) {
-        println("NULL!")
-        limeDrvClerk.sellSandwich(s2)
-    }
-
-    //Supervisor.buyMissingItems()
+    Supervisor.buyMissingItems()
 }

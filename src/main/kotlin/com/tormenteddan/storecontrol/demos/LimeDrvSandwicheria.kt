@@ -2,7 +2,6 @@ package com.tormenteddan.storecontrol.demos
 
 import com.tormenteddan.storecontrol.sandwiches.Sandwich
 import com.tormenteddan.storecontrol.sandwiches.ingredients.Ingredient
-import com.tormenteddan.storecontrol.sandwiches.ingredients.SandwichIngredient
 import com.tormenteddan.storecontrol.stores.SandwichStore
 import com.tormenteddan.storecontrol.stores.SandwichStoreClerk
 import com.tormenteddan.storecontrol.util.Article
@@ -12,7 +11,7 @@ import com.tormenteddan.storecontrol.util.Article
  */
 object LimeDrvSandwicheria : SandwichStore(SANDWICHERIA, ADDRESS_LIME_DR, SANDWICHERIA_MENU) {
     init {
-        makeInventory()
+        populateInventory()
         addObserver(Supervisor)
     }
 
@@ -26,32 +25,22 @@ object LimeDrvSandwicheria : SandwichStore(SANDWICHERIA, ADDRESS_LIME_DR, SANDWI
     val BREAD_DISCOUNT = Ingredient(BREAD_DISCOUNT_TAG, BREAD_DISCOUNT_COST)
 
     /**
-     * Adds the bread discount to a sandwich if it doesn't have it yet.
-     */
-    fun Sandwich?.discounted(): Sandwich? {
-        this ?: return null
-        return if (BREAD_DISCOUNT !in this)
-            this + BREAD_DISCOUNT else this
-    }
-
-    /**
      * Clerks of the Lime Drv Sandwichería must add a bread discount to every
      * sandwich they make.
      */
     override fun buildClerk(name: String): SandwichStoreClerk {
         return object : SandwichStoreClerk(this@LimeDrvSandwicheria, name) {
-            override fun makeSandwich(ingredients: Collection<SandwichIngredient>): Sandwich? =
-                    super.makeSandwich(ingredients).discounted()
-
-            override fun makeSandwich(n: Int): Sandwich? =
-                    super.makeSandwich(n).discounted()
-
-            override fun sellSandwich(sandwich: Sandwich): Boolean =
-                    super.sellSandwich(sandwich.discounted()!!)
+            /**
+             * Adds the bread discount to a sandwich if it doesn't have it yet.
+             */
+            override fun Sandwich.withDiscounts(): Sandwich {
+                return if (BREAD_DISCOUNT !in this)
+                    this + BREAD_DISCOUNT else this
+            }
         }
     }
 
-    override fun makeInventory(): Boolean {
+    override fun populateInventory(): Boolean {
         if (inventory.isEmpty()) {
             inventory = listOf(
                     Article(0, LETTUCE_TAG, LETTUCE_COST, 100, 100),

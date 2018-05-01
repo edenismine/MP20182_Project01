@@ -8,11 +8,11 @@ import com.tormenteddan.storecontrol.util.Article
  */
 object MainStTorteria : SandwichStore(TORTERIA, ADDRESS_MAIN_ST, TORTERIA_MENU) {
     init {
-        makeInventory()
+        populateInventory()
         addObserver(Supervisor)
     }
 
-    override fun makeInventory(): Boolean {
+    override fun populateInventory(): Boolean {
         if (inventory.isEmpty()) {
             inventory = TORTA_COMPONENTS
                     .mapIndexed { index, it ->

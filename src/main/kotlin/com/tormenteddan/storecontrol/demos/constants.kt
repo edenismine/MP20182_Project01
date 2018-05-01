@@ -217,7 +217,7 @@ fun SandwichIngredient.cost(): Int = when (this) {
  */
 fun SandwichStoreSupervisor.printDashboard() {
     println("\u001Bc")
-    val width = 100
+    val width = 79
     println("|".padEnd(width, '=') + "|")
     println("|" +
             "DASHBOARD"

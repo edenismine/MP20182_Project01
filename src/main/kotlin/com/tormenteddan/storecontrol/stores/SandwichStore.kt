@@ -14,8 +14,11 @@ import java.util.*
  * A sandwich store with a [name] located at an [address]. It can calculate
  * its [shopping list][missingArticles] by checking its [inventory]. It notifies
  * its [observers][obs] about its transactions and its [balance].  Its
- * [clerks][clerks] help it [make][SandwichStoreClerk.makeSandwich]
- * and [sell sandwiches][SandwichStoreClerk.sellSandwich].
+ * [clerks][clerks] help it:
+ *
+ * - [design][SandwichStoreClerk.designSandwich],
+ * - [make][SandwichStoreClerk.getSandwich] and
+ * - [sell sandwiches][SandwichStoreClerk.sellSandwich].
  *
  * It implements the [InventoryManager] interface which means that
  * administrators, employees or supervisors can also [consume] the store's
@@ -58,14 +61,14 @@ abstract class SandwichStore
         get() = this.inventory.filter { (it.required - it.current) >= 0 }
 
     var balance: Int = 0
-        private set
+        protected set
 
     /**
-     * Initializes the store's inventory.
+     * Populates the store's inventory.
      *
-     * @return true if the inventory was successfully constructed.
+     * @return true if the inventory was successfully initialized.
      */
-    protected abstract fun makeInventory(): Boolean
+    protected abstract fun populateInventory(): Boolean
 
     /**
      * Creates a new clerk for the store.
@@ -118,20 +121,7 @@ abstract class SandwichStore
         }
     }
 
-    /**
-     * Creates a string representation of the store:
-     *
-     * ```kotlin
-     * "$name located at $address"
-     * ```
-     *
-     * @return A string representation of the store.
-     */
-    override fun toString(): String {
-        return "$name located at $address"
-    }
-
-    override fun consume(item: Any?, amount: Int): Boolean {
+    final override fun consume(item: Any?, amount: Int): Boolean {
         if (amount <= 0) return false
 
         if (item is SandwichIngredient) {
@@ -155,7 +145,7 @@ abstract class SandwichStore
         return false
     }
 
-    override fun replenish(item: Any?, amount: Int): Boolean {
+    final override fun replenish(item: Any?, amount: Int): Boolean {
         if (amount <= 0) return false
 
         if (item is SandwichIngredient) {
@@ -189,7 +179,7 @@ abstract class SandwichStore
      * @param arg argument passed to the
      * [notifyObservers][Observable.notifyObservers] method.
      */
-    override fun update(o: Observable?, arg: Any?) {
+    final override fun update(o: Observable?, arg: Any?) {
         if (arg is Transaction)
             balance += when (arg.type) {
                 TransactionType.EARNED -> arg.cents
@@ -197,5 +187,18 @@ abstract class SandwichStore
             }
         setChanged()
         notifyObservers(arg)
+    }
+
+    /**
+     * Creates a string representation of the store:
+     *
+     * ```kotlin
+     * "$name located at $address"
+     * ```
+     *
+     * @return A string representation of the store.
+     */
+    final override fun toString(): String {
+        return "$name located at $address"
     }
 }
