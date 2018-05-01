@@ -19,7 +19,8 @@ interface InventoryManager {
      * @return true if the inventory changed as a result of this call, false
      * otherwise.
      */
-    fun consume(item: Any?, amount: Int = 1) : Boolean
+    fun consume(item: Any?, amount: Int = 1): Boolean
+
     /**
      * Finds an [item] and adds an [amount] to its inventory.
      *
@@ -29,5 +30,5 @@ interface InventoryManager {
      * @return true if the inventory changed as a result of this call, false
      * otherwise.
      */
-    fun replenish(item: Any?, amount: Int = 1) : Boolean
+    fun replenish(item: Any?, amount: Int = 1): Boolean
 }

@@ -62,4 +62,11 @@ interface Sandwich {
      * returned.
      */
     operator fun minus(ingredient: Ingredient): Sandwich
+
+    /**
+     * Returns true if [ingredient] is found in sandwiches [ingredients].
+     */
+    operator fun contains(ingredient: SandwichIngredient): Boolean {
+        return ingredients.contains(ingredient)
+    }
 }

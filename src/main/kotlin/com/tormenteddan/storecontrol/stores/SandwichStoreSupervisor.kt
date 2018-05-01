@@ -49,13 +49,14 @@ open class SandwichStoreSupervisor : Observer {
      * [transaction][Transaction] and makes each store update its supervisors
      * accordingly.
      */
-    fun buyMissingItems(){
-        for (store in shoppingMap.keys){
-            store.missingArticles.forEach{
+    fun buyMissingItems() {
+        for (store in shoppingMap.keys) {
+            store.missingArticles.forEach {
                 val missing = it.required - it.current
-                if(store.replenish(it, missing)){
+                if (store.replenish(it, missing)) {
                     val transaction = Transaction(TransactionType.SPENT,
-                            store.address, it.description, (missing * it.cost))
+                            store.address, it.description,
+                            (missing * it.cost))
                     store.update(store, transaction)
                 }
             }

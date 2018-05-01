@@ -29,12 +29,15 @@ abstract class SandwichStoreClerk(val store: SandwichStore, val name: String) :
     }
 
     /**
-     * Given a list of [ingredients], tries to create a [sandwich][Sandwich].
+     * Given a list of [SandwichIngredient], tries to create a [Sandwich].
+     *
+     * @param ingredients A list of sandwich ingredients that might make a
+     * sandwich if put together (must have exactly one bread component).
      *
      * @return A sandwich if the [list][ingredients] is valid (has exactly one
      * bread component) or null otherwise.
      */
-    fun makeSandwich(ingredients: List<SandwichIngredient>): Sandwich? {
+    open fun makeSandwich(ingredients: Collection<SandwichIngredient>): Sandwich? {
         val (bread, notBread) = ingredients.partition { it is Bread }
         if (bread.size != 1)
             return null
@@ -44,6 +47,18 @@ abstract class SandwichStoreClerk(val store: SandwichStore, val name: String) :
             sandwich += ingredient
         return sandwich
     }
+
+    /**
+     * Given a number [n], the clerk retrieves the [n]-th menu item
+     * from their store's [menu][SandwichStore.menu].
+     *
+     * @param n The menu index of the desired sandwich.
+     * @return The n-th menu item or null if no such item exists.
+     */
+    open fun makeSandwich(n: Int): Sandwich? {
+        return store.menu.elementAtOrNull(n)
+    }
+
 
     /**
      * After a [sandwich] has been designed, the clerk will try to prepare it
@@ -57,12 +72,11 @@ abstract class SandwichStoreClerk(val store: SandwichStore, val name: String) :
      * @return true if the [store's][store] [inventory][SandwichStore.inventory]
      * changed as a result of this call, false otherwise.
      */
-    fun sellSandwich(sandwich: Sandwich): Boolean {
+    open fun sellSandwich(sandwich: Sandwich): Boolean {
         val accumulator = arrayListOf<Pair<SandwichIngredient, Int>>()
         val prepared = sandwich.ingredients
-                .groupBy{it}.map { (k, v) -> k to v.size }
-                .all {
-                    (item, amount) ->
+                .groupBy { it }.map { (k, v) -> k to v.size }
+                .all { (item, amount) ->
                     val consumed = store.consume(item, amount)
                     if (consumed)
                         accumulator.add(item to amount)

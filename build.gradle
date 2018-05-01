@@ -14,7 +14,7 @@ apply plugin: 'kotlin'
 apply plugin: 'application'
 apply plugin: 'org.jetbrains.dokka'
 
-mainClassName = 'com.tormenteddan.storecontrol.AppKt'
+mainClassName = 'com.tormenteddan.storecontrol.demos.DemoKt'
 
 defaultTasks 'run'
 
@@ -40,4 +40,8 @@ task wrapper(type: Wrapper) {
 
 compileKotlin {
     kotlinOptions.jvmTarget= "1.8"
+}
+
+run {
+    args System.getProperty("args", "").split()
 }

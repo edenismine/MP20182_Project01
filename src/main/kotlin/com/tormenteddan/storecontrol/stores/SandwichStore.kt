@@ -1,5 +1,6 @@
 package com.tormenteddan.storecontrol.stores
 
+import com.tormenteddan.storecontrol.sandwiches.Sandwich
 import com.tormenteddan.storecontrol.sandwiches.ingredients.Bread
 import com.tormenteddan.storecontrol.sandwiches.ingredients.Ingredient
 import com.tormenteddan.storecontrol.sandwiches.ingredients.SandwichIngredient
@@ -25,6 +26,7 @@ import java.util.*
  *
  * @param name The store's description.
  * @param address The store's address.
+ * @param menu The store's menu.
  *
  * @property name The store's description.
  * @property address The store's address.
@@ -41,23 +43,47 @@ import java.util.*
  * @author daniel.aragon@ciencias.unam.mx
  */
 abstract class SandwichStore
-(val name: String, val address: String) : Observable(), Observer,
-        InventoryManager {
-    protected abstract var inventory : Collection<Article>
+(val name: String, val address: String,
+ var menu: Collection<Sandwich>) : Observable(), Observer, InventoryManager {
+    protected var inventory: Collection<Article> = emptyList()
+        set(value) {
+            field = value.distinct().toList()
+            setChanged()
+            notifyObservers()
+        }
 
     protected var clerks = emptyList<SandwichStoreClerk>()
 
     val missingArticles: List<Article>
-        get() = this.inventory.filter{ (it.required - it.current) >= 0 }
+        get() = this.inventory.filter { (it.required - it.current) >= 0 }
 
-    var balance : Int = 0
+    var balance: Int = 0
         private set
 
     /**
-     * Creates a new Clerk
+     * Initializes the store's inventory.
+     *
+     * @return true if the inventory was successfully constructed.
      */
-    fun addNewClerk(name: String) : SandwichStoreClerk {
-        val new = object : SandwichStoreClerk(this@SandwichStore, name){}
+    protected abstract fun makeInventory(): Boolean
+
+    /**
+     * Creates a new clerk for the store.
+     *
+     * @param name the clerk's name.
+     */
+    open fun buildClerk(name: String): SandwichStoreClerk {
+        return object : SandwichStoreClerk(this, name) {}
+    }
+
+    /**
+     * Creates a new clerk, adds and adds it to the store's [clerks].
+     *
+     * @param name The new clerk's name.
+     * @return a new clerk with the given [name].
+     */
+    fun addNewClerk(name: String): SandwichStoreClerk {
+        val new = buildClerk(name)
         clerks += new
         return new
     }
@@ -84,7 +110,7 @@ abstract class SandwichStore
         val candidate = this.find {
             it.description == description && it.cost == cost
         }
-        if(candidate == null) {
+        if (candidate == null) {
             return false
         } else {
             candidate.current += amount
@@ -108,18 +134,18 @@ abstract class SandwichStore
     override fun consume(item: Any?, amount: Int): Boolean {
         if (amount <= 0) return false
 
-        if (item is SandwichIngredient){
+        if (item is SandwichIngredient) {
             val success = inventory.unsafeMod(item, -amount)
-            if (success){
+            if (success) {
                 setChanged()
                 notifyObservers()
             }
             return success
-        } else if (item is Article){
-            val candidate = inventory.find {it == item}
-            if(candidate == null) {
+        } else if (item is Article) {
+            val candidate = inventory.find { it == item }
+            if (candidate == null) {
                 return false
-            } else if(candidate.current >= amount){
+            } else if (candidate.current >= amount) {
                 candidate.current -= amount
                 setChanged()
                 notifyObservers()
@@ -132,16 +158,16 @@ abstract class SandwichStore
     override fun replenish(item: Any?, amount: Int): Boolean {
         if (amount <= 0) return false
 
-        if (item is SandwichIngredient){
+        if (item is SandwichIngredient) {
             val success = inventory.unsafeMod(item, amount)
-            if (success){
+            if (success) {
                 setChanged()
                 notifyObservers()
             }
             return success
-        } else if (item is Article){
-            val candidate = inventory.find {it == item}
-            if(candidate == null) {
+        } else if (item is Article) {
+            val candidate = inventory.find { it == item }
+            if (candidate == null) {
                 return false
             } else {
                 candidate.current += amount
@@ -165,7 +191,7 @@ abstract class SandwichStore
      */
     override fun update(o: Observable?, arg: Any?) {
         if (arg is Transaction)
-            balance += when(arg.type){
+            balance += when (arg.type) {
                 TransactionType.EARNED -> arg.cents
                 TransactionType.SPENT -> -arg.cents
             }

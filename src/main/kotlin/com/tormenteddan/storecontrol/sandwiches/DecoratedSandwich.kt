@@ -24,7 +24,7 @@ class DecoratedSandwich
     override val ingredients: List<SandwichIngredient>
         get() = sandwich.ingredients + ingredient
     override val cost: Int
-        get() = sandwich.cost + ingredient.cost
+        get() = sandwich.cost + ingredient.unsafeCost
     override val base: Bread
         get() = sandwich.base
 

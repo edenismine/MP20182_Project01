@@ -11,18 +11,18 @@ package com.tormenteddan.storecontrol.util
  *
  * @property id Item's unique id.
  * @property description Item's identifying description.
- * @property cost Item's associated cost. Its backing property is [_cost]
- * and defaults to 0 if it's negative.
+ * @property cost Item's associated cost. Its backing property is
+ * [unsafeCost] and defaults to 0 if it's negative.
  * @property current The current quantity of this particular item inside an
- * inventory. Its backing property is [_current] and defaults to 0 if it's
+ * inventory. Its backing property is [unsafeCurrent] and defaults to 0 if it's
  * negative.
  * @property required The required quantity of this particular item inside an
- * inventory. Its backing property is [_required] and defaults to 0 if it's
+ * inventory. Its backing property is [unsafeRequired] and defaults to 0 if it's
  * negative.
  *
- * @param _cost unchecked initial cost.
- * @param _current unchecked initial quantity.
- * @param _required unchecked initial required quantity.
+ * @param unsafeCost unchecked initial cost. May be negative.
+ * @param unsafeCurrent unchecked initial quantity. May be negative.
+ * @param unsafeRequired unchecked initial required quantity. May be negative.
  *
  *
  * @author daniel.aragon@ciencias.unam.mx
@@ -30,34 +30,34 @@ package com.tormenteddan.storecontrol.util
 data class Article(
         val id: Int,
         val description: String,
-        private var _cost: Int,
-        private var _current: Int,
-        private var _required: Int) {
-    var cost
-        get() = if (_cost < 0) 0 else _cost
+        var unsafeCost: Int,
+        var unsafeCurrent: Int,
+        var unsafeRequired: Int) {
+    var cost: Int = if (unsafeCost < 0) 0 else unsafeCost
+        get() = if (unsafeCost < 0) 0 else unsafeCost
         set(value) {
-            if (value >= 0)
-                _cost = value
-        }
-    var current
-        get() = if (_current < 0) 0 else _current
-        set(value) {
-            if (value >= 0)
-                _current = value
+            field = if (value < 0) 0 else value
+            unsafeCost = value
         }
 
-    var required
-        get() = if (_required < 0) 0 else _required
+    var current: Int = if (unsafeCurrent < 0) 0 else unsafeCurrent
+        get() = if (unsafeCurrent < 0) 0 else unsafeCurrent
         set(value) {
-            if (value >= 0)
-                _required = value
+            field = if (value < 0) 0 else value
+            unsafeCurrent = value
+        }
+
+    var required: Int = if (unsafeRequired < 0) 0 else unsafeRequired
+        get() = if (unsafeRequired < 0) 0 else unsafeRequired
+        set(value) {
+            field = if (value < 0) 0 else value
+            unsafeRequired = value
         }
 
     /**
      * Returns a string representation of the entry.
      */
     override fun toString(): String {
-        return "Article(id=$id, description=$description, cost=$cost," +
-                "current=$current, required=$required)"
+        return "Article($id, $description, $unsafeCost, $current, $required)"
     }
 }
