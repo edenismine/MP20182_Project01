@@ -39,12 +39,9 @@ abstract class SandwichStoreClerk(val store: SandwichStore, val name: String) :
      */
     open fun makeSandwich(ingredients: Collection<SandwichIngredient>): Sandwich? {
         val (bread, notBread) = ingredients.partition { it is Bread }
-        if (bread.size != 1)
-            return null
+        if (bread.size != 1) return null
         var sandwich: Sandwich = BaseSandwich(bread.first() as Bread)
-        val otherIngredients = notBread.map { it as Ingredient }
-        for (ingredient in otherIngredients)
-            sandwich += ingredient
+        for (i in notBread.map { it as Ingredient }) sandwich += i
         return sandwich
     }
 
@@ -74,13 +71,11 @@ abstract class SandwichStoreClerk(val store: SandwichStore, val name: String) :
      */
     open fun sellSandwich(sandwich: Sandwich): Boolean {
         val accumulator = arrayListOf<Pair<SandwichIngredient, Int>>()
-        val prepared = sandwich.ingredients
-                .groupBy { it }.map { (k, v) -> k to v.size }
+        val prepared = sandwich.ingredients.groupingBy { it }.eachCount()
                 .all { (item, amount) ->
-                    val consumed = store.consume(item, amount)
-                    if (consumed)
-                        accumulator.add(item to amount)
-                    return@all consumed
+                        val consumed = store.consume(item, amount)
+                        if (consumed) accumulator.add(item to amount)
+                        return@all consumed
                 }
         // If the sandwich cannot be completed, restore the consumed items
         // and return false
