@@ -53,11 +53,4 @@ data class Article(
             field = if (value < 0) 0 else value
             unsafeRequired = value
         }
-
-    /**
-     * Returns a string representation of the entry.
-     */
-    override fun toString(): String {
-        return "Article($id, $description, $unsafeCost, $current, $required)"
-    }
 }

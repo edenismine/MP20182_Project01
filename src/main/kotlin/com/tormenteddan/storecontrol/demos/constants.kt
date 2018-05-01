@@ -109,21 +109,6 @@ val WHOLEGRAIN_BOLILLO = Bread(WHOLEGRAIN_BOLILLO_TAG,
 /** Sausage */
 val SAUSAGE = Ingredient(SAUSAGE_TAG, SAUSAGE_COST)
 
-/* ============================== COLLECTIONS ============================== */
-
-/** All torta ingredients. */
-val TORTA_INGREDIENTS = listOf(WHITE_CHEESE, SPANISH_CHEESE, TOMATO, LETTUCE,
-        HAM, CHICKEN, HEAD_CHEESE, BEEF_MILANESA, MAYONNAISE, MUSTARD, KETCHUP)
-/** All sandwich ingredients. */
-val SANDWICH_INGREDIENTS = listOf(LETTUCE, HAM, CHICKEN, HEAD_CHEESE,
-        SAUSAGE, TOMATO, WHITE_CHEESE, MAYONNAISE, KETCHUP)
-/** All torta bread types. */
-val TORTA_BREAD = listOf(PLAIN_BOLILLO, WHOLEGRAIN_BOLILLO)
-/** All torta components */
-val TORTA_COMPONENTS = TORTA_INGREDIENTS + TORTA_BREAD
-/** All sandwich components */
-val SANDWICH_COMPONENTS = SANDWICH_INGREDIENTS + TORTA_BREAD
-
 /* ============================= DEMO CONSTANTS ============================= */
 
 /** Name of the torterías restaurant chain */
@@ -133,7 +118,10 @@ const val TORTERIA = "Juanito's Tortería"
 const val ADDRESS_MAIN_ST = "Main St 1031"
 
 /** Address of Tesla Av Tortería */
-const val ADDRESS_TESLA_AV = "Tesla Av 72"
+const val ADDRESS_EIGHT_AV = "Eight Av 1239"
+
+/** Address of Tesla Av Tortería */
+const val ADDRESS_TESLA_BLVD = "Tesla Blvd 72"
 
 /** Name of the sandwicherías restaurant chain */
 const val SANDWICHERIA = "Juanito's Sandwichería"

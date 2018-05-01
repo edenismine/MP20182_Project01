@@ -24,16 +24,19 @@ fun main(args: Array<String>) {
 }
 
 /** John is a store clerk of the Main St Tortería */
-val mainStClerk = MainStTorteria.addNewClerk("John")
+val john = TorteriaMainSt.addNewClerk("John")
 
-/** Joy is a store clerk of the Tesla Av Tortería */
-val teslaAvClerk = TeslaAvTorteria.addNewClerk("Joy")
+/** Joy is a store clerk of the Tesla Blvd Tortería */
+val joy = TorteriaTeslaBlvd.addNewClerk("Joy")
 
 /** Kim is a store clerk of the Lime Drv Sandwichería */
-val limeDrvClerk = LimeDrvSandwicheria.addNewClerk("Kim")
+val kim = SandwicheriaLimeDrv.addNewClerk("Kim")
+
+/** Jane is a store clerk of the Eight Av Tortería */
+val jane = TorteriaEightAv.addNewClerk("Jane")
 
 /** A list of all the store clerks */
-val clerks = listOf(mainStClerk, teslaAvClerk, limeDrvClerk)
+val clerks = listOf(john, joy, kim, jane)
 
 /**
  * ## Demo 1
@@ -56,7 +59,7 @@ fun demo1() {
  * ## Demo 2
  *
  * It makes the clerks from Main St and Lime Drv prepare the same sandwich.
- * Since the clerk at Mains St works at a tortería he should add a
+ * Since the clerk at Mains St works at a tortería he doesn't have to add a
  * discount to the sandwich, but the clerk from Lime Drv should.
  *
  * The supervisor replenishes all the stores afterwards.
@@ -69,8 +72,8 @@ fun demo2() {
             MAYONNAISE
     )
 
-    mainStClerk.sellSandwich(ingredients)
-    limeDrvClerk.sellSandwich(ingredients)
+    john.sellSandwich(ingredients)
+    kim.sellSandwich(ingredients)
 
     Supervisor.buyMissingItems()
 }
