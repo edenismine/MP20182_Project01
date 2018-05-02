@@ -1,4 +1,4 @@
-package com.tormenteddan.storecontrol.demos
+package demos
 
 import com.tormenteddan.storecontrol.stores.SandwichStoreSupervisor
 import java.util.*

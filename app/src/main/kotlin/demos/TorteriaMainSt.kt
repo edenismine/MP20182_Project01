@@ -1,4 +1,4 @@
-package com.tormenteddan.storecontrol.demos
+package demos
 
 import com.tormenteddan.storecontrol.stores.SandwichStore
 import com.tormenteddan.storecontrol.util.Article

@@ -1,4 +1,9 @@
-# Module main
+# Module core_main
 
-A sandwich stores' manager with a sandwich builder tool and 
-location-specific inventory control.
+Library with the SandwichStore, SandwichSotreClerk, SandwichStoreSupervisor 
+and Sandwich along with some other useful Interfaces like Article and 
+Transaction.
+
+# Module app_main
+
+Demos the core module.

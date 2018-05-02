@@ -1,4 +1,4 @@
-package com.tormenteddan.storecontrol.demos
+package demos
 
 import com.tormenteddan.storecontrol.sandwiches.BaseSandwich
 import com.tormenteddan.storecontrol.sandwiches.ingredients.Bread

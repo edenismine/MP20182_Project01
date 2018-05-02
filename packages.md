@@ -1,3 +1,7 @@
+# Package demos
+
+Sets up and creates all the demos for the SandwichStore library.
+
 # Package com.tormenteddan.storecontrol.demos
 
 Package that contains the application that can run the demos. It works

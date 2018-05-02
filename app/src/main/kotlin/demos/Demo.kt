@@ -1,4 +1,4 @@
-package com.tormenteddan.storecontrol.demos
+package demos
 
 import java.util.*
 

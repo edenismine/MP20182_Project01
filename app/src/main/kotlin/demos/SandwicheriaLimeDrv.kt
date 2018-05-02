@@ -1,4 +1,4 @@
-package com.tormenteddan.storecontrol.demos
+package demos
 
 import com.tormenteddan.storecontrol.sandwiches.Sandwich
 import com.tormenteddan.storecontrol.sandwiches.ingredients.Ingredient
@@ -34,8 +34,8 @@ object SandwicheriaLimeDrv : SandwichStore(SANDWICHERIA, ADDRESS_LIME_DR, SANDWI
              * Adds the bread discount to a sandwich if it doesn't have it yet.
              */
             override fun Sandwich.withDiscounts(): Sandwich {
-                return if (BREAD_DISCOUNT !in this)
-                    this + BREAD_DISCOUNT else this
+                return if (demos.SandwicheriaLimeDrv.BREAD_DISCOUNT !in this)
+                    this + demos.SandwicheriaLimeDrv.BREAD_DISCOUNT else this
             }
         }
     }

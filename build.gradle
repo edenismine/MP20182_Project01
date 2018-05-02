@@ -7,41 +7,44 @@ buildscript {
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.jetbrains.dokka:dokka-gradle-plugin:0.9.16"
+        classpath 'edu.sc.seis.gradle:launch4j:2.4.3'
     }
 }
 
-apply plugin: 'kotlin'
-apply plugin: 'application'
 apply plugin: 'org.jetbrains.dokka'
 
-mainClassName = 'com.tormenteddan.storecontrol.demos.DemoKt'
-
-defaultTasks 'run'
-
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    compile 'no.tornado:tornadofx:1.7.15'
-}
-
-dokka {
-    outputFormat = 'html'
-    outputDirectory = "$buildDir/javadoc"
-    includeNonPublic = true
-    includes = ['packages.md', 'modules.md']
+allprojects {
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
 }
 
 task wrapper(type: Wrapper) {
     gradleVersion = "4.6"
 }
-
-compileKotlin {
-    kotlinOptions.jvmTarget= "1.8"
+dokka {
+    kotlinTasks {
+        defaultKotlinTasks() +
+                [project(":core").compileKotlin, project(":app").compileKotlin]
+    }
+    jdkVersion = 8
+    outputFormat = 'gfm'
+    outputDirectory = "$buildDir/docs"
+    includeNonPublic = true
+    includes = ['modules.md', 'packages.md']
 }
 
-run {
-    args System.getProperty("args", "").split()
+task clean{
+    doFirst {
+        delete "$buildDir"
+    }
+    subprojects.each {
+        it.afterEvaluate {
+            def cleanTask = it.tasks.findByName('clean')
+            if (cleanTask) {
+                dependsOn(cleanTask)
+            }
+        }
+    }
 }
