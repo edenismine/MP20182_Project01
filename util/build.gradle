@@ -1,0 +1,11 @@
+apply plugin: 'kotlin'
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+}
+
+buildDir = "$rootProject.buildDir/$project.name"
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}

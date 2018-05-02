@@ -7,7 +7,6 @@ buildscript {
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.jetbrains.dokka:dokka-gradle-plugin:0.9.16"
-        classpath 'edu.sc.seis.gradle:launch4j:2.4.3'
     }
 }
 
@@ -26,16 +25,19 @@ task wrapper(type: Wrapper) {
 dokka {
     kotlinTasks {
         defaultKotlinTasks() +
-                [project(":core").compileKotlin, project(":app").compileKotlin]
+                [project(":sandwiches").compileKotlin,
+                project(":util").compileKotlin,
+                project(":stores").compileKotlin,
+                project(":app").compileKotlin]
     }
     jdkVersion = 8
-    outputFormat = 'gfm'
+    outputFormat = 'html'
     outputDirectory = "$buildDir/docs"
     includeNonPublic = true
     includes = ['modules.md', 'packages.md']
 }
 
-task clean{
+task clean {
     doFirst {
         delete "$buildDir"
     }

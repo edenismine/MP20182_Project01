@@ -1,9 +1,15 @@
-# Module core_main
+# Module :stores
 
-Library with the SandwichStore, SandwichSotreClerk, SandwichStoreSupervisor 
-and Sandwich along with some other useful Interfaces like Article and 
-Transaction.
+Library with the SandwichStore, SandwichSotreClerk, SandwichStoreSupervisor. 
 
-# Module app_main
+# Module :sandwiches
 
-Demos the core module.
+Library with a Sandwich implementation that uses the decorator pattern.
+
+# Module :util
+
+Library with useful interfaces for storing and working with Inventories.
+
+# Module :app
+
+Demos how a sandwich store would work under certain circumstances.
