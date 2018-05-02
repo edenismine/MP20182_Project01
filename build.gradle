@@ -34,7 +34,7 @@ dokka {
     outputFormat = 'html'
     outputDirectory = "$buildDir/docs"
     includeNonPublic = true
-    includes = ['modules.md', 'packages.md']
+    includes = ['modules.md']
 }
 
 task clean {
