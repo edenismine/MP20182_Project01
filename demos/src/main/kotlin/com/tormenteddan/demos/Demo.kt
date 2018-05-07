@@ -65,15 +65,8 @@ fun demo1() {
  * The supervisor replenishes all the stores afterwards.
  */
 fun demo2() {
-    val ingredients = listOf(
-            WHOLEGRAIN_BOLILLO,
-            TOMATO,
-            CHICKEN,
-            MAYONNAISE
-    )
-
+    val ingredients = listOf(WHOLEGRAIN_BOLILLO, TOMATO, CHICKEN, MAYONNAISE)
     john.sellSandwich(ingredients)
     kim.sellSandwich(ingredients)
-
     Supervisor.buyMissingItems()
 }

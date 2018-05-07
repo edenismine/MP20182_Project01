@@ -10,36 +10,43 @@ buildscript {
     }
 }
 
-apply plugin: 'org.jetbrains.dokka'
-
-allprojects {
+subprojects {
+    apply plugin: 'kotlin'
+    apply plugin: 'org.jetbrains.dokka'
     repositories {
         mavenCentral()
         jcenter()
     }
+    dependencies {
+        compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    }
+    dokka {
+        kotlinTasks {
+            def subdeps = project.configurations
+                    .collectMany { it.allDependencies }
+                    .findAll { it instanceof ProjectDependency }
+                    .toSet()
+            def deps = subdeps.collect{":$it.name:compileKotlin"}
+            def compileKotlinStrings = new ArrayList<String>()
+            deps.each {compileKotlinStrings.add(it.toString())}
+            defaultKotlinTasks() + compileKotlinStrings
+        }
+        jdkVersion = 8
+        outputFormat = 'html'
+        outputDirectory = "$rootProject.projectDir/docs"
+        includeNonPublic = true
+    }
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = "4.6"
+    gradleVersion = "4.7"
 }
-dokka {
-    kotlinTasks {
-        defaultKotlinTasks() +
-                [project(":sandwiches").compileKotlin,
-                project(":util").compileKotlin,
-                project(":stores").compileKotlin,
-                project(":app").compileKotlin]
-    }
-    jdkVersion = 8
-    outputFormat = 'html'
-    outputDirectory = "$buildDir/docs"
-    includeNonPublic = true
-    includes = ['modules.md']
-}
+
 
 task clean {
     doFirst {
         delete "$buildDir"
+        delete "$projectDir/docs"
     }
     subprojects.each {
         it.afterEvaluate {

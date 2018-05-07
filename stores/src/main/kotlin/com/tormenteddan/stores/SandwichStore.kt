@@ -9,6 +9,7 @@ import com.tormenteddan.util.InventoryManager
 import com.tormenteddan.util.Transaction
 import com.tormenteddan.util.TransactionType
 import java.util.*
+import kotlin.properties.Delegates
 
 /**
  * A sandwich store with a [name] located at an [address]. It can calculate
@@ -48,14 +49,16 @@ import java.util.*
 abstract class SandwichStore
 (val name: String, val address: String,
  var menu: Collection<Sandwich>) : Observable(), Observer, InventoryManager {
-    protected var inventory: Collection<Article> = emptyList()
-        set(value) {
-            field = value.distinct().toList()
-            setChanged()
-            notifyObservers()
-        }
 
-    protected var clerks = emptyList<SandwichStoreClerk>()
+    protected var inventory: Collection<Article> by
+    Delegates.vetoable(emptyList()) { _, _, new ->
+        new.groupBy { it.id }.map { (_, v) -> v.size }.all { it == 1 }
+    }
+
+    protected var clerks: List<SandwichStoreClerk> by
+    Delegates.vetoable(emptyList()) { _, _, new ->
+        new.all { it.store == this@SandwichStore }
+    }
 
     val missingArticles: List<Article>
         get() = this.inventory.filter { (it.required - it.current) >= 0 }
@@ -88,6 +91,7 @@ abstract class SandwichStore
      */
     fun addNewClerk(name: String): SandwichStoreClerk {
         val new = buildClerk(name)
+        new.addObserver(this)
         clerks += new
         return new
     }
@@ -217,3 +221,5 @@ abstract class SandwichStore
         return "$name located at $address"
     }
 }
+
+

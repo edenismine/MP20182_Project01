@@ -26,13 +26,6 @@ import java.util.*
  */
 abstract class SandwichStoreClerk
 (val store: SandwichStore, val name: String) : Observable() {
-    /**
-     * When a clerk is created, it automatically adds its store to its
-     * observers.
-     */
-    init {
-        addObserver(store)
-    }
 
     /**
      * Given a list of [ingredients], the clerk will:

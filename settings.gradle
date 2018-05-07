@@ -8,7 +8,7 @@
  */
 
 rootProject.name = 'MP20182_Project01'
-include 'app'
+include 'demos'
 include 'stores'
 include 'sandwiches'
 include 'util'
