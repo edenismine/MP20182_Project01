@@ -43,20 +43,20 @@ object SandwicheriaLimeDrv : SandwichStore(SANDWICHERIA, ADDRESS_LIME_DR, SANDWI
     override fun populateInventory(): Boolean {
         if (inventory.isEmpty()) {
             inventory = arrayListOf(
-                    Article(0, LETTUCE_TAG, LETTUCE_COST, 100, 100),
-                    Article(1, HAM_TAG, HAM_COST, 100, 100),
-                    Article(2, CHICKEN_TAG, CHICKEN_COST, 100, 100),
-                    Article(3, HEAD_CHEESE_TAG, HEAD_CHEESE_COST, 100, 100),
-                    Article(4, SAUSAGE_TAG, SAUSAGE_COST, 100, 100),
-                    Article(5, TOMATO_TAG, TOMATO_COST, 100, 100),
-                    Article(6, WHITE_CHEESE_TAG, WHITE_CHEESE_COST, 100, 100),
-                    Article(7, MAYONNAISE_TAG, MAYONNAISE_COST, 100, 100),
-                    Article(8, KETCHUP_TAG, KETCHUP_COST, 100, 100),
-                    Article(9, PLAIN_BOLILLO_TAG, PLAIN_BOLILLO_COST, 100, 100),
-                    Article(10, WHITE_CHEESE_TAG, WHITE_CHEESE_COST, 100, 100),
-                    Article(11, WHOLEGRAIN_BOLILLO_TAG,
+                    Article(0, address, LETTUCE_TAG, LETTUCE_COST, 100, 100),
+                    Article(1, address, HAM_TAG, HAM_COST, 100, 100),
+                    Article(2, address, CHICKEN_TAG, CHICKEN_COST, 100, 100),
+                    Article(3, address, HEAD_CHEESE_TAG, HEAD_CHEESE_COST, 100, 100),
+                    Article(4, address, SAUSAGE_TAG, SAUSAGE_COST, 100, 100),
+                    Article(5, address, TOMATO_TAG, TOMATO_COST, 100, 100),
+                    Article(6, address, WHITE_CHEESE_TAG, WHITE_CHEESE_COST, 100, 100),
+                    Article(7, address, MAYONNAISE_TAG, MAYONNAISE_COST, 100, 100),
+                    Article(8, address, KETCHUP_TAG, KETCHUP_COST, 100, 100),
+                    Article(9, address, PLAIN_BOLILLO_TAG, PLAIN_BOLILLO_COST, 100, 100),
+                    Article(10, address, WHOLEGRAIN_BOLILLO_TAG,
                             WHOLEGRAIN_BOLILLO_COST, 100, 100),
-                    Article(12, BREAD_DISCOUNT_TAG, BREAD_DISCOUNT_COST,
+                    Article(11, address, BREAD_DISCOUNT_TAG,
+                            BREAD_DISCOUNT_COST,
                             2147483647, 2147483647))
         }
         return inventory.isNotEmpty()

@@ -10,6 +10,7 @@ package com.tormenteddan.util
  * 2. [required] quantity.
  *
  * @property id Item's unique id.
+ * @property origin Where the article is stored.
  * @property description Item's identifying description.
  * @property cost Item's associated cost. Its backing property is
  * [unsafeCost] and defaults to 0 if it's negative.
@@ -29,6 +30,7 @@ package com.tormenteddan.util
  */
 data class Article(
         val id: Int,
+        val origin: String,
         val description: String,
         var unsafeCost: Int,
         var unsafeCurrent: Int,

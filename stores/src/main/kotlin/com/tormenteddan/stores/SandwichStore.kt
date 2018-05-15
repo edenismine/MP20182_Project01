@@ -162,7 +162,8 @@ abstract class SandwichStore
                 return success
             }
             is Article -> {
-                val candidate = inventory.find { it == item } ?: return false
+                val candidate = inventory.find { it == item }
+                        ?: return false
                 candidate.current += amount
                 setChanged()
                 notifyObservers()
