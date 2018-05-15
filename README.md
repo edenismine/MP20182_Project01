@@ -1,5 +1,7 @@
 # Simple Sandwich Store Mock-Up/Library/Demo that uses the Template, Observer and Decorator patterns
 
+![apm](https://img.shields.io/apm/l/vim-mode.svg) 
+
 ## Introduction
 
 This is a [Kotlin](https://kotlinlang.org) Mock-Up/Library/Demo that
@@ -140,8 +142,9 @@ Some of the most common tasks are:
 
 ## Further work
 
-Check-out my [TornadoFX](https://github.com/edvin/tornadofx) adaptation
-of this simple app.
+Check-out my [TornadoFX](https://github.com/edvin/tornadofx) GUI
+implementation of this simple app here:
+<https://github.com/tormenteddan/SandwichControl>
 
 ## Acknowledgements
 
