@@ -10,7 +10,67 @@ circumstances.
 
 This demo is based on the following specification:
 
-<iframe src="https://pastebin.com/embed_iframe/dNQEUUFg" style="border:none;width:100%"></iframe>
+> **English \[en\]:** Design the UML diagram and implement a solution
+> for the following problem: We have a tortería that has several
+> locations, each branch keeps an inventory of their ingredients in a
+> different data structure, each branch can know what is missing from
+> their respective inventories. These ingredients are white roll
+> (bolillo), whole roll (bolillo), lettuce, ham, chicken, head cheese,
+> beef milanesa, tomato, white cheese, manchego cheese, mayonnaise,
+> mustard and ketchup. The supervisor of all branches must be able to
+> obtain this information to coordinate the items that must sent to the
+> stores. There is a menu of 10 “tortas” with predefined ingredients,
+> however clients can optionally add ingredients for an extra cost to
+> their “tortas” and can also make their own custom “torta”. The
+> “tortas” that are sold are logged in the system as a special
+> product called “simple torta” and “wholegrain torta”, depending on
+> what they contain.
+> 
+> Also, the torterias’ boss has been so successful that he has bought a
+> sandwich place and wants to be able to manage the branch in the same
+> way. In this sandwichería the ingredients of white bread, wholegrain
+> bread, lettuce, ham, chicken, head cheese, sausage, tomato, white
+> cheese, mayonnaise and ketchup are used. The bread for simple
+> sandwiches has a different cost from that of bolillos’, but the boss
+> wants to avoid modifying the database, so he asks that the sold
+> sandwiches be registered as “simple torta” and “wholegrain torta”,
+> adding an extra ingredient with a negative price to the register
+> called “bread discount”.
+> 
+> The boss needs to have a record of his daily sales with the name of
+> the item sold, each branch’s balance, and in general he/she wants to
+> be able to know how much each branch made.
+> 
+> **Español \[es\]:** Diseña el diagrama de clases e implementa una
+> solución para el siguiente problema: Tenemos una tortería que tiene
+> varias sucursales, cada sucursal guarda un inventario de los
+> ingredientes de las tortas en una estructura de datos diferente, cada
+> sucursal puede saber qué le falta de sus respectivos inventarios.
+> Estos ingredientes son bolillo blanco, bolillo integral, lechuga,
+> jamón, pollo, queso de puerco, milanesa de res, jitomate, queso
+> blanco, queso manchego, mayonesa, mostaza y catsup. El jefe de todas
+> las sucursales debe poder obtener esta información para coordinar los
+> artículos que debe enviarles. Existe un menú de 10 tortas con
+> ingredientes predefinidos, sin embargo cuentan con la posibilidad de
+> agregar ingredientes por un costo extra a sus tortas y también pueden
+> hacer su propia torta, las tortas creadas se guarda en el sistema como
+> un producto especial llamado “torta simple” y “torta integral”,
+> dependiendo de lo que contengan.
+> 
+> Además nuestro jefe ha tenido tanto éxito que ha comprado una
+> sandwichería y desea poder manejar la sucursal de la misma manera. En
+> esta sandwichería se utilizan los ingredientes de pan blanco, pan
+> integral, lechuga, jamón, pollo, queso de puerco, salchicha, jitomate,
+> queso blanco, mayonesa y catsup. El pan para sandwich tiene un costo
+> distinto del de un bolillo para torta, pero el jefe desea que la base
+> de datos no se modifique demasiado, por o que pide que los sandwiches
+> vendidos se registren como “torta simple” y “torta integral” y se
+> agregue un ingrediente extra en el registro con precio negativo
+> llamado “descuento de pan”.
+> 
+> El jefe necesita tener un registro de sus ventas diarias con el nombre
+> del objeto vendido, el precio por sucursal y además le gustaría poder
+> ver cuánto ganó en cada sucursal.
 
 It was developed as part of the activities of the 2018 Modeling and
 Programming course taught by Prof. Rosa Victoria Villa Padilla at the
